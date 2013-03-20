@@ -1,0 +1,2783 @@
+public final class java.lang.String extends java.lang.Object implements java.io.Serializable, java.lang.Comparable, java.lang.CharSequence
+{
+    private final char[] value;
+    private final int offset;
+    private final int count;
+    private int hash;
+    private static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    public static final java.util.Comparator CASE_INSENSITIVE_ORDER;
+
+    public void <init>()
+    {
+        java.lang.String r0;
+        char[] $r1;
+
+        r0 := @this: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<java.lang.String: int offset> = 0;
+        r0.<java.lang.String: int count> = 0;
+        $r1 = newarray (char)[0];
+        r0.<java.lang.String: char[] value> = $r1;
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        int i0, i1, $i2, $i3;
+        char[] r2, r3;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        i0 = r1.<java.lang.String: int count>;
+        r2 = r1.<java.lang.String: char[] value>;
+        $i2 = lengthof r2;
+        if $i2 <= i0 goto label0;
+
+        i1 = r1.<java.lang.String: int offset>;
+        $i3 = i1 + i0;
+        r3 = staticinvoke <java.util.Arrays: char[] copyOfRange(char[],int,int)>(r2, i1, $i3);
+        goto label1;
+
+     label0:
+        r3 = r2;
+
+     label1:
+        r0.<java.lang.String: int offset> = 0;
+        r0.<java.lang.String: int count> = i0;
+        r0.<java.lang.String: char[] value> = r3;
+        return;
+    }
+
+    public void <init>(char[])
+    {
+        java.lang.String r0;
+        char[] r1, $r2;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: char[];
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<java.lang.String: int offset> = 0;
+        $i0 = lengthof r1;
+        r0.<java.lang.String: int count> = $i0;
+        $r2 = staticinvoke <java.lang.StringValue: char[] 'from'(char[])>(r1);
+        r0.<java.lang.String: char[] value> = $r2;
+        return;
+    }
+
+    public void <init>(char[], int, int)
+    {
+        java.lang.String r0;
+        char[] r1, $r5;
+        int i0, i1, $i2, $i3, $i4, $i5;
+        java.lang.StringIndexOutOfBoundsException $r2, $r3, $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        if i0 >= 0 goto label0;
+
+        $r2 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r2.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r2;
+
+     label0:
+        if i1 >= 0 goto label1;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r3;
+
+     label1:
+        $i2 = lengthof r1;
+        $i3 = $i2 - i1;
+        if i0 <= $i3 goto label2;
+
+        $r4 = new java.lang.StringIndexOutOfBoundsException;
+        $i4 = i0 + i1;
+        specialinvoke $r4.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i4);
+        throw $r4;
+
+     label2:
+        r0.<java.lang.String: int offset> = 0;
+        r0.<java.lang.String: int count> = i1;
+        $i5 = i0 + i1;
+        $r5 = staticinvoke <java.util.Arrays: char[] copyOfRange(char[],int,int)>(r1, i0, $i5);
+        r0.<java.lang.String: char[] value> = $r5;
+        return;
+    }
+
+    public void <init>(int[], int, int)
+    {
+        java.lang.String r0;
+        int[] r1;
+        int i0, i1, i2, i3, i4, i5, i6, i7, i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27;
+        char[] r2;
+        java.lang.StringIndexOutOfBoundsException $r3, $r4, $r5;
+        java.lang.IllegalArgumentException $r6, $r7;
+        char $c28;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: int[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        if i0 >= 0 goto label0;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r3;
+
+     label0:
+        if i1 >= 0 goto label1;
+
+        $r4 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r4.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r4;
+
+     label1:
+        $i9 = lengthof r1;
+        $i10 = $i9 - i1;
+        if i0 <= $i10 goto label2;
+
+        $r5 = new java.lang.StringIndexOutOfBoundsException;
+        $i11 = i0 + i1;
+        specialinvoke $r5.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i11);
+        throw $r5;
+
+     label2:
+        i2 = 0;
+        i3 = 1;
+        $i12 = i1 + i3;
+        r2 = newarray (char)[$i12];
+        i4 = i0;
+        i5 = 0;
+        i6 = 0;
+
+     label3:
+        if i6 >= i1 goto label11;
+
+        $i13 = i4;
+        i4 = i4 + 1;
+        i7 = r1[$i13];
+        if i7 >= 0 goto label4;
+
+        $r6 = new java.lang.IllegalArgumentException;
+        specialinvoke $r6.<java.lang.IllegalArgumentException: void <init>()>();
+        throw $r6;
+
+     label4:
+        if i3 > 0 goto label7;
+
+        $i14 = i5 + 1;
+        $i15 = lengthof r2;
+        if $i14 < $i15 goto label7;
+
+        if i2 != 0 goto label5;
+
+        $i16 = neg i3;
+        $i17 = $i16 + 1;
+        $i18 = $i17 * i1;
+        $i19 = $i18 << 10;
+        i20 = $i19 / i6;
+        i2 = i20 >> 10;
+        if i2 > 0 goto label6;
+
+        i2 = 1;
+        goto label6;
+
+     label5:
+        i2 = i2 * 2;
+
+     label6:
+        $i21 = lengthof r2;
+        $i22 = $i21 + i2;
+        $i23 = i1 * 2;
+        i8 = staticinvoke <java.lang.Math: int min(int,int)>($i22, $i23);
+        $i24 = lengthof r2;
+        $i25 = i8 - $i24;
+        $i26 = i1 - i6;
+        i3 = $i25 - $i26;
+        r2 = staticinvoke <java.util.Arrays: char[] copyOf(char[],int)>(r2, i8);
+
+     label7:
+        if i7 >= 65536 goto label8;
+
+        $i27 = i5;
+        i5 = i5 + 1;
+        $c28 = (char) i7;
+        r2[$i27] = $c28;
+        goto label10;
+
+     label8:
+        if i7 > 1114111 goto label9;
+
+        staticinvoke <java.lang.Character: void toSurrogates(int,char[],int)>(i7, r2, i5);
+        i5 = i5 + 2;
+        i3 = i3 + -1;
+        goto label10;
+
+     label9:
+        $r7 = new java.lang.IllegalArgumentException;
+        specialinvoke $r7.<java.lang.IllegalArgumentException: void <init>()>();
+        throw $r7;
+
+     label10:
+        i6 = i6 + 1;
+        goto label3;
+
+     label11:
+        r0.<java.lang.String: int offset> = 0;
+        r0.<java.lang.String: char[] value> = r2;
+        r0.<java.lang.String: int count> = i5;
+        return;
+    }
+
+    public void <init>(byte[], int, int, int)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        int i0, i1, i2, i3, $i4, $i5, i9, i10, $i11, $i12, $i15;
+        char[] r2;
+        byte $b6, $b13;
+        short $s7, $s14;
+        char $c8, $c16;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        i2 := @parameter3: int;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        staticinvoke <java.lang.String: void checkBounds(byte[],int,int)>(r1, i1, i2);
+        r2 = newarray (char)[i2];
+        if i0 != 0 goto label2;
+
+        i3 = i2;
+
+     label0:
+        $i4 = i3;
+        i3 = i3 + -1;
+        if $i4 <= 0 goto label1;
+
+        $i5 = i3 + i1;
+        $b6 = r1[$i5];
+        $s7 = $b6 & 255;
+        $c8 = (char) $s7;
+        r2[i3] = $c8;
+        goto label0;
+
+     label1:
+        goto label4;
+
+     label2:
+        i9 = i0 << 8;
+        i10 = i2;
+
+     label3:
+        $i11 = i10;
+        i10 = i10 + -1;
+        if $i11 <= 0 goto label4;
+
+        $i12 = i10 + i1;
+        $b13 = r1[$i12];
+        $s14 = $b13 & 255;
+        $i15 = i9 | $s14;
+        $c16 = (char) $i15;
+        r2[i10] = $c16;
+        goto label3;
+
+     label4:
+        r0.<java.lang.String: int offset> = 0;
+        r0.<java.lang.String: int count> = i2;
+        r0.<java.lang.String: char[] value> = r2;
+        return;
+    }
+
+    public void <init>(byte[], int)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        int i0, $i1;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        $i1 = lengthof r1;
+        specialinvoke r0.<java.lang.String: void <init>(byte[],int,int,int)>(r1, i0, 0, $i1);
+        return;
+    }
+
+    private static void checkBounds(byte[], int, int)
+    {
+        byte[] r0;
+        int i0, i1, $i2, $i3, $i4;
+        java.lang.StringIndexOutOfBoundsException $r1, $r2, $r3;
+
+        r0 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        if i1 >= 0 goto label0;
+
+        $r1 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r1;
+
+     label0:
+        if i0 >= 0 goto label1;
+
+        $r2 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r2.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r2;
+
+     label1:
+        $i2 = lengthof r0;
+        $i3 = $i2 - i1;
+        if i0 <= $i3 goto label2;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        $i4 = i0 + i1;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i4);
+        throw $r3;
+
+     label2:
+        return;
+    }
+
+    public void <init>(byte[], int, int, java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        java.lang.String r0, r2;
+        byte[] r1;
+        int i0, i1, $i2;
+        char[] r3;
+        java.lang.NullPointerException $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r2 := @parameter3: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        if r2 != null goto label0;
+
+        $r4 = new java.lang.NullPointerException;
+        specialinvoke $r4.<java.lang.NullPointerException: void <init>(java.lang.String)>("charsetName");
+        throw $r4;
+
+     label0:
+        staticinvoke <java.lang.String: void checkBounds(byte[],int,int)>(r1, i0, i1);
+        r3 = staticinvoke <java.lang.StringCoding: char[] decode(java.lang.String,byte[],int,int)>(r2, r1, i0, i1);
+        r0.<java.lang.String: int offset> = 0;
+        $i2 = lengthof r3;
+        r0.<java.lang.String: int count> = $i2;
+        r0.<java.lang.String: char[] value> = r3;
+        return;
+    }
+
+    public void <init>(byte[], int, int, java.nio.charset.Charset)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        int i0, i1, $i2;
+        java.nio.charset.Charset r2;
+        char[] r3;
+        java.lang.NullPointerException $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r2 := @parameter3: java.nio.charset.Charset;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        if r2 != null goto label0;
+
+        $r4 = new java.lang.NullPointerException;
+        specialinvoke $r4.<java.lang.NullPointerException: void <init>(java.lang.String)>("charset");
+        throw $r4;
+
+     label0:
+        staticinvoke <java.lang.String: void checkBounds(byte[],int,int)>(r1, i0, i1);
+        r3 = staticinvoke <java.lang.StringCoding: char[] decode(java.nio.charset.Charset,byte[],int,int)>(r2, r1, i0, i1);
+        r0.<java.lang.String: int offset> = 0;
+        $i2 = lengthof r3;
+        r0.<java.lang.String: int count> = $i2;
+        r0.<java.lang.String: char[] value> = r3;
+        return;
+    }
+
+    public void <init>(byte[], java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        java.lang.String r0, r2;
+        byte[] r1;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        r2 := @parameter1: java.lang.String;
+        $i0 = lengthof r1;
+        specialinvoke r0.<java.lang.String: void <init>(byte[],int,int,java.lang.String)>(r1, 0, $i0, r2);
+        return;
+    }
+
+    public void <init>(byte[], java.nio.charset.Charset)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        java.nio.charset.Charset r2;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        r2 := @parameter1: java.nio.charset.Charset;
+        $i0 = lengthof r1;
+        specialinvoke r0.<java.lang.String: void <init>(byte[],int,int,java.nio.charset.Charset)>(r1, 0, $i0, r2);
+        return;
+    }
+
+    public void <init>(byte[], int, int)
+    {
+        java.lang.String r0;
+        byte[] r1;
+        int i0, i1, $i2;
+        char[] r2;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        staticinvoke <java.lang.String: void checkBounds(byte[],int,int)>(r1, i0, i1);
+        r2 = staticinvoke <java.lang.StringCoding: char[] decode(byte[],int,int)>(r1, i0, i1);
+        r0.<java.lang.String: int offset> = 0;
+        $i2 = lengthof r2;
+        r0.<java.lang.String: int count> = $i2;
+        r0.<java.lang.String: char[] value> = r2;
+        return;
+    }
+
+    public void <init>(byte[])
+    {
+        java.lang.String r0;
+        byte[] r1;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: byte[];
+        $i0 = lengthof r1;
+        specialinvoke r0.<java.lang.String: void <init>(byte[],int,int)>(r1, 0, $i0);
+        return;
+    }
+
+    public void <init>(java.lang.StringBuffer)
+    {
+        java.lang.String r0, r2;
+        java.lang.StringBuffer r1;
+        char[] $r3;
+        int $i0, $i1;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.StringBuffer;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r2 = virtualinvoke r1.<java.lang.StringBuffer: java.lang.String toString()>();
+        $r3 = r2.<java.lang.String: char[] value>;
+        r0.<java.lang.String: char[] value> = $r3;
+        $i0 = r2.<java.lang.String: int count>;
+        r0.<java.lang.String: int count> = $i0;
+        $i1 = r2.<java.lang.String: int offset>;
+        r0.<java.lang.String: int offset> = $i1;
+        return;
+    }
+
+    public void <init>(java.lang.StringBuilder)
+    {
+        java.lang.String r0, r2;
+        java.lang.StringBuilder r1;
+        char[] $r3;
+        int $i0, $i1;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.StringBuilder;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r2 = virtualinvoke r1.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r3 = r2.<java.lang.String: char[] value>;
+        r0.<java.lang.String: char[] value> = $r3;
+        $i0 = r2.<java.lang.String: int count>;
+        r0.<java.lang.String: int count> = $i0;
+        $i1 = r2.<java.lang.String: int offset>;
+        r0.<java.lang.String: int offset> = $i1;
+        return;
+    }
+
+    void <init>(int, int, char[])
+    {
+        java.lang.String r0;
+        int i0, i1;
+        char[] r1;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        r1 := @parameter2: char[];
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<java.lang.String: char[] value> = r1;
+        r0.<java.lang.String: int offset> = i0;
+        r0.<java.lang.String: int count> = i1;
+        return;
+    }
+
+    public int length()
+    {
+        java.lang.String r0;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        $i0 = r0.<java.lang.String: int count>;
+        return $i0;
+    }
+
+    public boolean isEmpty()
+    {
+        java.lang.String r0;
+        int $i0;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        $i0 = r0.<java.lang.String: int count>;
+        if $i0 != 0 goto label0;
+
+        $z0 = 1;
+        goto label1;
+
+     label0:
+        $z0 = 0;
+
+     label1:
+        return $z0;
+    }
+
+    public char charAt(int)
+    {
+        java.lang.String r0;
+        int i0, $i1, $i2, $i3;
+        java.lang.StringIndexOutOfBoundsException $r1;
+        char[] $r2;
+        char $c4;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        if i0 < 0 goto label0;
+
+        $i1 = r0.<java.lang.String: int count>;
+        if i0 < $i1 goto label1;
+
+     label0:
+        $r1 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r1;
+
+     label1:
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i2 = r0.<java.lang.String: int offset>;
+        $i3 = i0 + $i2;
+        $c4 = $r2[$i3];
+        return $c4;
+    }
+
+    public int codePointAt(int)
+    {
+        java.lang.String r0;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.StringIndexOutOfBoundsException $r1;
+        char[] $r2;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        if i0 < 0 goto label0;
+
+        $i1 = r0.<java.lang.String: int count>;
+        if i0 < $i1 goto label1;
+
+     label0:
+        $r1 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r1;
+
+     label1:
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i2 = r0.<java.lang.String: int offset>;
+        $i3 = $i2 + i0;
+        $i4 = r0.<java.lang.String: int offset>;
+        $i5 = r0.<java.lang.String: int count>;
+        $i6 = $i4 + $i5;
+        $i7 = staticinvoke <java.lang.Character: int codePointAtImpl(char[],int,int)>($r2, $i3, $i6);
+        return $i7;
+    }
+
+    public int codePointBefore(int)
+    {
+        java.lang.String r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.StringIndexOutOfBoundsException $r1;
+        char[] $r2;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 = i0 - 1;
+        if i1 < 0 goto label0;
+
+        $i2 = r0.<java.lang.String: int count>;
+        if i1 < $i2 goto label1;
+
+     label0:
+        $r1 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r1;
+
+     label1:
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i3 = r0.<java.lang.String: int offset>;
+        $i4 = $i3 + i0;
+        $i5 = r0.<java.lang.String: int offset>;
+        $i6 = staticinvoke <java.lang.Character: int codePointBeforeImpl(char[],int,int)>($r2, $i4, $i5);
+        return $i6;
+    }
+
+    public int codePointCount(int, int)
+    {
+        java.lang.String r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6;
+        java.lang.IndexOutOfBoundsException $r1;
+        char[] $r2;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        if i0 < 0 goto label0;
+
+        $i2 = r0.<java.lang.String: int count>;
+        if i1 > $i2 goto label0;
+
+        if i0 <= i1 goto label1;
+
+     label0:
+        $r1 = new java.lang.IndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.IndexOutOfBoundsException: void <init>()>();
+        throw $r1;
+
+     label1:
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i3 = r0.<java.lang.String: int offset>;
+        $i4 = $i3 + i0;
+        $i5 = i1 - i0;
+        $i6 = staticinvoke <java.lang.Character: int codePointCountImpl(char[],int,int)>($r2, $i4, $i5);
+        return $i6;
+    }
+
+    public int offsetByCodePoints(int, int)
+    {
+        java.lang.String r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        java.lang.IndexOutOfBoundsException $r1;
+        char[] $r2;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        if i0 < 0 goto label0;
+
+        $i2 = r0.<java.lang.String: int count>;
+        if i0 <= $i2 goto label1;
+
+     label0:
+        $r1 = new java.lang.IndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.IndexOutOfBoundsException: void <init>()>();
+        throw $r1;
+
+     label1:
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i3 = r0.<java.lang.String: int offset>;
+        $i4 = r0.<java.lang.String: int count>;
+        $i5 = r0.<java.lang.String: int offset>;
+        $i6 = $i5 + i0;
+        $i7 = staticinvoke <java.lang.Character: int offsetByCodePointsImpl(char[],int,int,int,int)>($r2, $i3, $i4, $i6, i1);
+        $i8 = r0.<java.lang.String: int offset>;
+        $i9 = $i7 - $i8;
+        return $i9;
+    }
+
+    void getChars(char[], int)
+    {
+        java.lang.String r0;
+        char[] r1, $r2;
+        int i0, $i1, $i2;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: char[];
+        i0 := @parameter1: int;
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i1 = r0.<java.lang.String: int offset>;
+        $i2 = r0.<java.lang.String: int count>;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r2, $i1, r1, i0, $i2);
+        return;
+    }
+
+    public void getChars(int, int, char[], int)
+    {
+        java.lang.String r0;
+        int i0, i1, i2, $i3, $i4, $i5, $i6, $i7;
+        char[] r1, $r5;
+        java.lang.StringIndexOutOfBoundsException $r2, $r3, $r4;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        r1 := @parameter2: char[];
+        i2 := @parameter3: int;
+        if i0 >= 0 goto label0;
+
+        $r2 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r2.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r2;
+
+     label0:
+        $i3 = r0.<java.lang.String: int count>;
+        if i1 <= $i3 goto label1;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r3;
+
+     label1:
+        if i0 <= i1 goto label2;
+
+        $r4 = new java.lang.StringIndexOutOfBoundsException;
+        $i4 = i1 - i0;
+        specialinvoke $r4.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i4);
+        throw $r4;
+
+     label2:
+        $r5 = r0.<java.lang.String: char[] value>;
+        $i5 = r0.<java.lang.String: int offset>;
+        $i6 = $i5 + i0;
+        $i7 = i1 - i0;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r5, $i6, r1, i2, $i7);
+        return;
+    }
+
+    public void getBytes(int, int, byte[], int)
+    {
+        java.lang.String r0;
+        int i0, i1, i2, i3, i4, i5, $i6, $i7, $i8, $i9, $i10, $i11;
+        byte[] r1;
+        char[] r2;
+        java.lang.StringIndexOutOfBoundsException $r3, $r4, $r5;
+        char $c12;
+        byte $b13;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        r1 := @parameter2: byte[];
+        i2 := @parameter3: int;
+        if i0 >= 0 goto label0;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r3;
+
+     label0:
+        $i6 = r0.<java.lang.String: int count>;
+        if i1 <= $i6 goto label1;
+
+        $r4 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r4.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r4;
+
+     label1:
+        if i0 <= i1 goto label2;
+
+        $r5 = new java.lang.StringIndexOutOfBoundsException;
+        $i7 = i1 - i0;
+        specialinvoke $r5.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i7);
+        throw $r5;
+
+     label2:
+        i3 = i2;
+        $i8 = r0.<java.lang.String: int offset>;
+        i4 = $i8 + i1;
+        $i9 = r0.<java.lang.String: int offset>;
+        i5 = $i9 + i0;
+        r2 = r0.<java.lang.String: char[] value>;
+
+     label3:
+        if i5 >= i4 goto label4;
+
+        $i10 = i3;
+        i3 = i3 + 1;
+        $i11 = i5;
+        i5 = i5 + 1;
+        $c12 = r2[$i11];
+        $b13 = (byte) $c12;
+        r1[$i10] = $b13;
+        goto label3;
+
+     label4:
+        return;
+    }
+
+    public byte[] getBytes(java.lang.String) throws java.io.UnsupportedEncodingException
+    {
+        java.lang.String r0, r1;
+        java.lang.NullPointerException $r2;
+        char[] $r3;
+        int $i0, $i1;
+        byte[] $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        if r1 != null goto label0;
+
+        $r2 = new java.lang.NullPointerException;
+        specialinvoke $r2.<java.lang.NullPointerException: void <init>()>();
+        throw $r2;
+
+     label0:
+        $r3 = r0.<java.lang.String: char[] value>;
+        $i0 = r0.<java.lang.String: int offset>;
+        $i1 = r0.<java.lang.String: int count>;
+        $r4 = staticinvoke <java.lang.StringCoding: byte[] encode(java.lang.String,char[],int,int)>(r1, $r3, $i0, $i1);
+        return $r4;
+    }
+
+    public byte[] getBytes(java.nio.charset.Charset)
+    {
+        java.lang.String r0;
+        java.nio.charset.Charset r1;
+        java.lang.NullPointerException $r2;
+        char[] $r3;
+        int $i0, $i1;
+        byte[] $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.nio.charset.Charset;
+        if r1 != null goto label0;
+
+        $r2 = new java.lang.NullPointerException;
+        specialinvoke $r2.<java.lang.NullPointerException: void <init>()>();
+        throw $r2;
+
+     label0:
+        $r3 = r0.<java.lang.String: char[] value>;
+        $i0 = r0.<java.lang.String: int offset>;
+        $i1 = r0.<java.lang.String: int count>;
+        $r4 = staticinvoke <java.lang.StringCoding: byte[] encode(java.nio.charset.Charset,char[],int,int)>(r1, $r3, $i0, $i1);
+        return $r4;
+    }
+
+    public byte[] getBytes()
+    {
+        java.lang.String r0;
+        char[] $r1;
+        int $i0, $i1;
+        byte[] $r2;
+
+        r0 := @this: java.lang.String;
+        $r1 = r0.<java.lang.String: char[] value>;
+        $i0 = r0.<java.lang.String: int offset>;
+        $i1 = r0.<java.lang.String: int count>;
+        $r2 = staticinvoke <java.lang.StringCoding: byte[] encode(char[],int,int)>($r1, $i0, $i1);
+        return $r2;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        java.lang.String r0, r2;
+        java.lang.Object r1;
+        int i0, i1, i2, $i3, $i4, $i5, $i6;
+        char[] r3, r4;
+        boolean $z0;
+        char $c7, $c8;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.Object;
+        if r0 != r1 goto label0;
+
+        return 1;
+
+     label0:
+        $z0 = r1 instanceof java.lang.String;
+        if $z0 == 0 goto label3;
+
+        r2 = (java.lang.String) r1;
+        i0 = r0.<java.lang.String: int count>;
+        $i4 = r2.<java.lang.String: int count>;
+        if i0 != $i4 goto label3;
+
+        r3 = r0.<java.lang.String: char[] value>;
+        r4 = r2.<java.lang.String: char[] value>;
+        i1 = r0.<java.lang.String: int offset>;
+        i2 = r2.<java.lang.String: int offset>;
+
+     label1:
+        $i5 = i0;
+        i0 = i0 + -1;
+        if $i5 == 0 goto label2;
+
+        $i6 = i1;
+        i1 = i1 + 1;
+        $c7 = r3[$i6];
+        $i3 = i2;
+        i2 = i2 + 1;
+        $c8 = r4[$i3];
+        if $c7 == $c8 goto label1;
+
+        return 0;
+
+     label2:
+        return 1;
+
+     label3:
+        return 0;
+    }
+
+    public boolean contentEquals(java.lang.StringBuffer)
+    {
+        java.lang.String r0;
+        java.lang.StringBuffer r1, r3;
+        java.lang.Throwable r4, $r5;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.StringBuffer;
+        r3 = r1;
+        entermonitor r1;
+
+     label0:
+        $z0 = virtualinvoke r0.<java.lang.String: boolean contentEquals(java.lang.CharSequence)>(r1);
+        exitmonitor r3;
+
+     label1:
+        return $z0;
+
+     label2:
+        $r5 := @caughtexception;
+
+     label3:
+        r4 = $r5;
+        exitmonitor r3;
+
+     label4:
+        throw r4;
+
+        catch java.lang.Throwable from label0 to label1 with label2;
+        catch java.lang.Throwable from label3 to label4 with label2;
+    }
+
+    public boolean contentEquals(java.lang.CharSequence)
+    {
+        java.lang.String r0;
+        java.lang.CharSequence r1;
+        char[] r2, r3, r5;
+        int i0, i1, i2, $i3, $i4, $i5, $i6, $i7, i10, i11, i12, $i13, $i14, $i16;
+        boolean $z0, $z1;
+        java.lang.AbstractStringBuilder $r4;
+        char $c8, $c9, $c15, $c17;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.CharSequence;
+        $i4 = r0.<java.lang.String: int count>;
+        $i5 = interfaceinvoke r1.<java.lang.CharSequence: int length()>();
+        if $i4 == $i5 goto label0;
+
+        return 0;
+
+     label0:
+        $z0 = r1 instanceof java.lang.AbstractStringBuilder;
+        if $z0 == 0 goto label2;
+
+        r2 = r0.<java.lang.String: char[] value>;
+        $r4 = (java.lang.AbstractStringBuilder) r1;
+        r3 = virtualinvoke $r4.<java.lang.AbstractStringBuilder: char[] getValue()>();
+        i0 = r0.<java.lang.String: int offset>;
+        i1 = 0;
+        i2 = r0.<java.lang.String: int count>;
+
+     label1:
+        $i6 = i2;
+        i2 = i2 + -1;
+        if $i6 == 0 goto label2;
+
+        $i7 = i0;
+        i0 = i0 + 1;
+        $c8 = r2[$i7];
+        $i3 = i1;
+        i1 = i1 + 1;
+        $c9 = r3[$i3];
+        if $c8 == $c9 goto label1;
+
+        return 0;
+
+     label2:
+        $z1 = virtualinvoke r1.<java.lang.Object: boolean equals(java.lang.Object)>(r0);
+        if $z1 == 0 goto label3;
+
+        return 1;
+
+     label3:
+        r5 = r0.<java.lang.String: char[] value>;
+        i10 = r0.<java.lang.String: int offset>;
+        i11 = 0;
+        i12 = r0.<java.lang.String: int count>;
+
+     label4:
+        $i13 = i12;
+        i12 = i12 + -1;
+        if $i13 == 0 goto label5;
+
+        $i14 = i10;
+        i10 = i10 + 1;
+        $c15 = r5[$i14];
+        $i16 = i11;
+        i11 = i11 + 1;
+        $c17 = interfaceinvoke r1.<java.lang.CharSequence: char charAt(int)>($i16);
+        if $c15 == $c17 goto label4;
+
+        return 0;
+
+     label5:
+        return 1;
+    }
+
+    public boolean equalsIgnoreCase(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        boolean $z0, $z1;
+        int $i0, $i1, $i2;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        if r0 != r1 goto label0;
+
+        $z0 = 1;
+        goto label2;
+
+     label0:
+        if r1 == null goto label1;
+
+        $i0 = r1.<java.lang.String: int count>;
+        $i1 = r0.<java.lang.String: int count>;
+        if $i0 != $i1 goto label1;
+
+        $i2 = r0.<java.lang.String: int count>;
+        $z1 = virtualinvoke r0.<java.lang.String: boolean regionMatches(boolean,int,java.lang.String,int,int)>(1, 0, r1, 0, $i2);
+        if $z1 == 0 goto label1;
+
+        $z0 = 1;
+        goto label2;
+
+     label1:
+        $z0 = 0;
+
+     label2:
+        return $z0;
+    }
+
+    public int compareTo(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        int i0, i1, i2, i3, i4, i5, i6, $i9, $i10, $i11, $i13, $i15, $i16;
+        char[] r2, r3;
+        char c7, c8, c12, c14;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 = r0.<java.lang.String: int count>;
+        i1 = r1.<java.lang.String: int count>;
+        i2 = staticinvoke <java.lang.Math: int min(int,int)>(i0, i1);
+        r2 = r0.<java.lang.String: char[] value>;
+        r3 = r1.<java.lang.String: char[] value>;
+        i3 = r0.<java.lang.String: int offset>;
+        i4 = r1.<java.lang.String: int offset>;
+        if i3 != i4 goto label3;
+
+        i5 = i3;
+        i6 = i2 + i3;
+
+     label0:
+        if i5 >= i6 goto label2;
+
+        c7 = r2[i5];
+        c8 = r3[i5];
+        if c7 == c8 goto label1;
+
+        $i9 = c7 - c8;
+        return $i9;
+
+     label1:
+        i5 = i5 + 1;
+        goto label0;
+
+     label2:
+        goto label5;
+
+     label3:
+        $i10 = i2;
+        i2 = i2 + -1;
+        if $i10 == 0 goto label5;
+
+        $i11 = i3;
+        i3 = i3 + 1;
+        c12 = r2[$i11];
+        $i13 = i4;
+        i4 = i4 + 1;
+        c14 = r3[$i13];
+        if c12 == c14 goto label4;
+
+        $i15 = c12 - c14;
+        return $i15;
+
+     label4:
+        goto label3;
+
+     label5:
+        $i16 = i0 - i1;
+        return $i16;
+    }
+
+    public int compareToIgnoreCase(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        java.util.Comparator $r2;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $r2 = <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER>;
+        $i0 = interfaceinvoke $r2.<java.util.Comparator: int compare(java.lang.Object,java.lang.Object)>(r0, r1);
+        return $i0;
+    }
+
+    public boolean regionMatches(int, java.lang.String, int, int)
+    {
+        java.lang.String r0, r1;
+        int i0, i1, i2, i3, i4, $i5, $i6, $i8, $i14, $i19, $i20, $i22;
+        char[] r2, r3;
+        long $l7, $l9, $l10, $l11, $l13, $l15, $l16, $l17;
+        byte $b12, $b18;
+        char $c21, $c23;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        r1 := @parameter1: java.lang.String;
+        i1 := @parameter2: int;
+        i2 := @parameter3: int;
+        r2 = r0.<java.lang.String: char[] value>;
+        $i5 = r0.<java.lang.String: int offset>;
+        i3 = $i5 + i0;
+        r3 = r1.<java.lang.String: char[] value>;
+        $i6 = r1.<java.lang.String: int offset>;
+        i4 = $i6 + i1;
+        if i1 < 0 goto label0;
+
+        if i0 < 0 goto label0;
+
+        $l7 = (long) i0;
+        $i8 = r0.<java.lang.String: int count>;
+        $l9 = (long) $i8;
+        $l10 = (long) i2;
+        $l11 = $l9 - $l10;
+        $b12 = $l7 cmp $l11;
+        if $b12 > 0 goto label0;
+
+        $l13 = (long) i1;
+        $i14 = r1.<java.lang.String: int count>;
+        $l15 = (long) $i14;
+        $l16 = (long) i2;
+        $l17 = $l15 - $l16;
+        $b18 = $l13 cmp $l17;
+        if $b18 <= 0 goto label1;
+
+     label0:
+        return 0;
+
+     label1:
+        $i19 = i2;
+        i2 = i2 + -1;
+        if $i19 <= 0 goto label2;
+
+        $i20 = i3;
+        i3 = i3 + 1;
+        $c21 = r2[$i20];
+        $i22 = i4;
+        i4 = i4 + 1;
+        $c23 = r3[$i22];
+        if $c21 == $c23 goto label1;
+
+        return 0;
+
+     label2:
+        return 1;
+    }
+
+    public boolean regionMatches(boolean, int, java.lang.String, int, int)
+    {
+        java.lang.String r0, r1;
+        boolean z0;
+        int i0, i1, i2, i3, i4, $i9, $i10, $i12, $i18, $i23, $i24, $i25;
+        char[] r2, r3;
+        char c5, c6, c7, c8, $c26, $c27;
+        long $l11, $l13, $l14, $l15, $l17, $l19, $l20, $l21;
+        byte $b16, $b22;
+
+        r0 := @this: java.lang.String;
+        z0 := @parameter0: boolean;
+        i0 := @parameter1: int;
+        r1 := @parameter2: java.lang.String;
+        i1 := @parameter3: int;
+        i2 := @parameter4: int;
+        r2 = r0.<java.lang.String: char[] value>;
+        $i9 = r0.<java.lang.String: int offset>;
+        i3 = $i9 + i0;
+        r3 = r1.<java.lang.String: char[] value>;
+        $i10 = r1.<java.lang.String: int offset>;
+        i4 = $i10 + i1;
+        if i1 < 0 goto label0;
+
+        if i0 < 0 goto label0;
+
+        $l11 = (long) i0;
+        $i12 = r0.<java.lang.String: int count>;
+        $l13 = (long) $i12;
+        $l14 = (long) i2;
+        $l15 = $l13 - $l14;
+        $b16 = $l11 cmp $l15;
+        if $b16 > 0 goto label0;
+
+        $l17 = (long) i1;
+        $i18 = r1.<java.lang.String: int count>;
+        $l19 = (long) $i18;
+        $l20 = (long) i2;
+        $l21 = $l19 - $l20;
+        $b22 = $l17 cmp $l21;
+        if $b22 <= 0 goto label1;
+
+     label0:
+        return 0;
+
+     label1:
+        $i23 = i2;
+        i2 = i2 + -1;
+        if $i23 <= 0 goto label5;
+
+        $i24 = i3;
+        i3 = i3 + 1;
+        c5 = r2[$i24];
+        $i25 = i4;
+        i4 = i4 + 1;
+        c6 = r3[$i25];
+        if c5 != c6 goto label2;
+
+        goto label1;
+
+     label2:
+        if z0 == 0 goto label4;
+
+        c7 = staticinvoke <java.lang.Character: char toUpperCase(char)>(c5);
+        c8 = staticinvoke <java.lang.Character: char toUpperCase(char)>(c6);
+        if c7 != c8 goto label3;
+
+        goto label1;
+
+     label3:
+        $c26 = staticinvoke <java.lang.Character: char toLowerCase(char)>(c7);
+        $c27 = staticinvoke <java.lang.Character: char toLowerCase(char)>(c8);
+        if $c26 != $c27 goto label4;
+
+        goto label1;
+
+     label4:
+        return 0;
+
+     label5:
+        return 1;
+    }
+
+    public boolean startsWith(java.lang.String, int)
+    {
+        java.lang.String r0, r1;
+        int i0, i1, i2, i3, $i4, $i5, $i6, $i7, $i9;
+        char[] r2, r3;
+        char $c8, $c10;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        r2 = r0.<java.lang.String: char[] value>;
+        $i4 = r0.<java.lang.String: int offset>;
+        i1 = $i4 + i0;
+        r3 = r1.<java.lang.String: char[] value>;
+        i2 = r1.<java.lang.String: int offset>;
+        i3 = r1.<java.lang.String: int count>;
+        if i0 < 0 goto label0;
+
+        $i5 = r0.<java.lang.String: int count>;
+        $i6 = $i5 - i3;
+        if i0 <= $i6 goto label1;
+
+     label0:
+        return 0;
+
+     label1:
+        i3 = i3 + -1;
+        if i3 < 0 goto label2;
+
+        $i7 = i1;
+        i1 = i1 + 1;
+        $c8 = r2[$i7];
+        $i9 = i2;
+        i2 = i2 + 1;
+        $c10 = r3[$i9];
+        if $c8 == $c10 goto label1;
+
+        return 0;
+
+     label2:
+        return 1;
+    }
+
+    public boolean startsWith(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String,int)>(r1, 0);
+        return $z0;
+    }
+
+    public boolean endsWith(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        int $i0, $i1, $i2;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $i0 = r0.<java.lang.String: int count>;
+        $i1 = r1.<java.lang.String: int count>;
+        $i2 = $i0 - $i1;
+        $z0 = virtualinvoke r0.<java.lang.String: boolean startsWith(java.lang.String,int)>(r1, $i2);
+        return $z0;
+    }
+
+    public int hashCode()
+    {
+        java.lang.String r0;
+        int i0, i1, i2, i3, $i4, $i5;
+        char[] r1;
+        char $c6;
+
+        r0 := @this: java.lang.String;
+        i0 = r0.<java.lang.String: int hash>;
+        i1 = r0.<java.lang.String: int count>;
+        if i0 != 0 goto label2;
+
+        if i1 <= 0 goto label2;
+
+        i2 = r0.<java.lang.String: int offset>;
+        r1 = r0.<java.lang.String: char[] value>;
+        i3 = 0;
+
+     label0:
+        if i3 >= i1 goto label1;
+
+        $i5 = 31 * i0;
+        $i4 = i2;
+        i2 = i2 + 1;
+        $c6 = r1[$i4];
+        i0 = $i5 + $c6;
+        i3 = i3 + 1;
+        goto label0;
+
+     label1:
+        r0.<java.lang.String: int hash> = i0;
+
+     label2:
+        return i0;
+    }
+
+    public int indexOf(int)
+    {
+        java.lang.String r0;
+        int i0, $i1;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        $i1 = virtualinvoke r0.<java.lang.String: int indexOf(int,int)>(i0, 0);
+        return $i1;
+    }
+
+    public int indexOf(int, int)
+    {
+        java.lang.String r0;
+        int i0, i1, i2, i3, $i4, $i5, $i6, $i7, $i9, $i10, $i13, $i14, $i17, $i18;
+        char[] r1, r2;
+        char $c8, $c11, $c12, $c15, $c16;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        $i4 = r0.<java.lang.String: int offset>;
+        $i5 = r0.<java.lang.String: int count>;
+        i2 = $i4 + $i5;
+        r1 = r0.<java.lang.String: char[] value>;
+        if i1 >= 0 goto label0;
+
+        i1 = 0;
+        goto label1;
+
+     label0:
+        $i6 = r0.<java.lang.String: int count>;
+        if i1 < $i6 goto label1;
+
+        return -1;
+
+     label1:
+        $i7 = r0.<java.lang.String: int offset>;
+        i3 = $i7 + i1;
+        if i0 >= 65536 goto label5;
+
+     label2:
+        if i3 >= i2 goto label4;
+
+        $c8 = r1[i3];
+        if $c8 != i0 goto label3;
+
+        $i9 = r0.<java.lang.String: int offset>;
+        $i10 = i3 - $i9;
+        return $i10;
+
+     label3:
+        i3 = i3 + 1;
+        goto label2;
+
+     label4:
+        return -1;
+
+     label5:
+        if i0 > 1114111 goto label9;
+
+        r2 = staticinvoke <java.lang.Character: char[] toChars(int)>(i0);
+
+     label6:
+        if i3 >= i2 goto label9;
+
+        $c11 = r1[i3];
+        $c12 = r2[0];
+        if $c11 != $c12 goto label8;
+
+        $i13 = i3 + 1;
+        if $i13 != i2 goto label7;
+
+        goto label9;
+
+     label7:
+        $i14 = i3 + 1;
+        $c15 = r1[$i14];
+        $c16 = r2[1];
+        if $c15 != $c16 goto label8;
+
+        $i17 = r0.<java.lang.String: int offset>;
+        $i18 = i3 - $i17;
+        return $i18;
+
+     label8:
+        i3 = i3 + 1;
+        goto label6;
+
+     label9:
+        return -1;
+    }
+
+    public int lastIndexOf(int)
+    {
+        java.lang.String r0;
+        int i0, $i1, $i2, $i3;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        $i1 = r0.<java.lang.String: int count>;
+        $i2 = $i1 - 1;
+        $i3 = virtualinvoke r0.<java.lang.String: int lastIndexOf(int,int)>(i0, $i2);
+        return $i3;
+    }
+
+    public int lastIndexOf(int, int)
+    {
+        java.lang.String r0;
+        int i0, i1, i2, i3, i4, $i5, $i6, $i7, $i8, $i10, $i11, $i12, $i13, $i16, $i17, $i20, $i21;
+        char[] r1, r2;
+        char $c9, $c14, $c15, $c18, $c19;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        i2 = r0.<java.lang.String: int offset>;
+        r1 = r0.<java.lang.String: char[] value>;
+        $i5 = r0.<java.lang.String: int offset>;
+        $i6 = r0.<java.lang.String: int count>;
+        if i1 < $i6 goto label0;
+
+        $i7 = r0.<java.lang.String: int count>;
+        $i8 = $i7 - 1;
+        goto label1;
+
+     label0:
+        $i8 = i1;
+
+     label1:
+        i3 = $i5 + $i8;
+        if i0 >= 65536 goto label5;
+
+     label2:
+        if i3 < i2 goto label4;
+
+        $c9 = r1[i3];
+        if $c9 != i0 goto label3;
+
+        $i10 = r0.<java.lang.String: int offset>;
+        $i11 = i3 - $i10;
+        return $i11;
+
+     label3:
+        i3 = i3 + -1;
+        goto label2;
+
+     label4:
+        return -1;
+
+     label5:
+        $i12 = r0.<java.lang.String: int offset>;
+        $i13 = r0.<java.lang.String: int count>;
+        i4 = $i12 + $i13;
+        if i0 > 1114111 goto label9;
+
+        r2 = staticinvoke <java.lang.Character: char[] toChars(int)>(i0);
+
+     label6:
+        if i3 < i2 goto label9;
+
+        $c14 = r1[i3];
+        $c15 = r2[0];
+        if $c14 != $c15 goto label8;
+
+        $i16 = i3 + 1;
+        if $i16 != i4 goto label7;
+
+        goto label9;
+
+     label7:
+        $i17 = i3 + 1;
+        $c18 = r1[$i17];
+        $c19 = r2[1];
+        if $c18 != $c19 goto label8;
+
+        $i20 = r0.<java.lang.String: int offset>;
+        $i21 = i3 - $i20;
+        return $i21;
+
+     label8:
+        i3 = i3 + -1;
+        goto label6;
+
+     label9:
+        return -1;
+    }
+
+    public int indexOf(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String,int)>(r1, 0);
+        return $i0;
+    }
+
+    public int indexOf(java.lang.String, int)
+    {
+        java.lang.String r0, r1;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+        char[] $r2, $r3;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i1 = r0.<java.lang.String: int offset>;
+        $i2 = r0.<java.lang.String: int count>;
+        $r3 = r1.<java.lang.String: char[] value>;
+        $i3 = r1.<java.lang.String: int offset>;
+        $i4 = r1.<java.lang.String: int count>;
+        $i5 = staticinvoke <java.lang.String: int indexOf(char[],int,int,char[],int,int,int)>($r2, $i1, $i2, $r3, $i3, $i4, i0);
+        return $i5;
+    }
+
+    static int indexOf(char[], int, int, char[], int, int, int)
+    {
+        char[] r0, r1;
+        int i0, i1, i2, i3, i4, i6, i7, i8, i9, i10, $i11, $i12, $i15, $i18;
+        char c5, $c13, $c14, $c16, $c17;
+
+        r0 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r1 := @parameter3: char[];
+        i2 := @parameter4: int;
+        i3 := @parameter5: int;
+        i4 := @parameter6: int;
+        if i4 < i1 goto label2;
+
+        if i3 != 0 goto label0;
+
+        $i11 = i1;
+        goto label1;
+
+     label0:
+        $i11 = -1;
+
+     label1:
+        return $i11;
+
+     label2:
+        if i4 >= 0 goto label3;
+
+        i4 = 0;
+
+     label3:
+        if i3 != 0 goto label4;
+
+        return i4;
+
+     label4:
+        c5 = r1[i2];
+        $i12 = i1 - i3;
+        i6 = i0 + $i12;
+        i7 = i0 + i4;
+
+     label5:
+        if i7 > i6 goto label11;
+
+        $c13 = r0[i7];
+        if $c13 == c5 goto label7;
+
+     label6:
+        i7 = i7 + 1;
+        if i7 > i6 goto label7;
+
+        $c14 = r0[i7];
+        if $c14 == c5 goto label7;
+
+        goto label6;
+
+     label7:
+        if i7 > i6 goto label10;
+
+        i8 = i7 + 1;
+        $i15 = i8 + i3;
+        i9 = $i15 - 1;
+        i10 = i2 + 1;
+
+     label8:
+        if i8 >= i9 goto label9;
+
+        $c16 = r0[i8];
+        $c17 = r1[i10];
+        if $c16 != $c17 goto label9;
+
+        i8 = i8 + 1;
+        i10 = i10 + 1;
+        goto label8;
+
+     label9:
+        if i8 != i9 goto label10;
+
+        $i18 = i7 - i0;
+        return $i18;
+
+     label10:
+        i7 = i7 + 1;
+        goto label5;
+
+     label11:
+        return -1;
+    }
+
+    public int lastIndexOf(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        int $i0, $i1;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $i0 = r0.<java.lang.String: int count>;
+        $i1 = virtualinvoke r0.<java.lang.String: int lastIndexOf(java.lang.String,int)>(r1, $i0);
+        return $i1;
+    }
+
+    public int lastIndexOf(java.lang.String, int)
+    {
+        java.lang.String r0, r1;
+        int i0, $i1, $i2, $i3, $i4, $i5;
+        char[] $r2, $r3;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        $r2 = r0.<java.lang.String: char[] value>;
+        $i1 = r0.<java.lang.String: int offset>;
+        $i2 = r0.<java.lang.String: int count>;
+        $r3 = r1.<java.lang.String: char[] value>;
+        $i3 = r1.<java.lang.String: int offset>;
+        $i4 = r1.<java.lang.String: int count>;
+        $i5 = staticinvoke <java.lang.String: int lastIndexOf(char[],int,int,char[],int,int,int)>($r2, $i1, $i2, $r3, $i3, $i4, i0);
+        return $i5;
+    }
+
+    static int lastIndexOf(char[], int, int, char[], int, int, int)
+    {
+        char[] r0, r1;
+        int i0, i1, i2, i3, i4, i5, i6, i8, i9, i10, i11, i12, $i13, $i14, $i16, $i17, $i19, $i21, $i22;
+        char c7, $c15, $c18, $c20;
+
+        r0 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r1 := @parameter3: char[];
+        i2 := @parameter4: int;
+        i3 := @parameter5: int;
+        i4 := @parameter6: int;
+        i5 = i1 - i3;
+        if i4 >= 0 goto label0;
+
+        return -1;
+
+     label0:
+        if i4 <= i5 goto label1;
+
+        i4 = i5;
+
+     label1:
+        if i3 != 0 goto label2;
+
+        return i4;
+
+     label2:
+        $i13 = i2 + i3;
+        i6 = $i13 - 1;
+        c7 = r1[i6];
+        $i14 = i0 + i3;
+        i8 = $i14 - 1;
+        i9 = i8 + i4;
+
+     label3:
+        if i9 < i8 goto label4;
+
+        $c15 = r0[i9];
+        if $c15 == c7 goto label4;
+
+        i9 = i9 + -1;
+        goto label3;
+
+     label4:
+        if i9 >= i8 goto label5;
+
+        return -1;
+
+     label5:
+        i10 = i9 - 1;
+        $i16 = i3 - 1;
+        i11 = i10 - $i16;
+        i12 = i6 - 1;
+
+     label6:
+        if i10 <= i11 goto label7;
+
+        $i17 = i10;
+        i10 = i10 + -1;
+        $c18 = r0[$i17];
+        $i19 = i12;
+        i12 = i12 + -1;
+        $c20 = r1[$i19];
+        if $c18 == $c20 goto label6;
+
+        i9 = i9 + -1;
+        goto label3;
+
+     label7:
+        $i21 = i11 - i0;
+        $i22 = $i21 + 1;
+        return $i22;
+    }
+
+    public java.lang.String substring(int)
+    {
+        java.lang.String r0, $r1;
+        int i0, $i1;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        $i1 = r0.<java.lang.String: int count>;
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(i0, $i1);
+        return $r1;
+    }
+
+    public java.lang.String substring(int, int)
+    {
+        java.lang.String r0, $r4;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        java.lang.StringIndexOutOfBoundsException $r1, $r2, $r3;
+        char[] $r5;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        if i0 >= 0 goto label0;
+
+        $r1 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r1.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i0);
+        throw $r1;
+
+     label0:
+        $i2 = r0.<java.lang.String: int count>;
+        if i1 <= $i2 goto label1;
+
+        $r2 = new java.lang.StringIndexOutOfBoundsException;
+        specialinvoke $r2.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>(i1);
+        throw $r2;
+
+     label1:
+        if i0 <= i1 goto label2;
+
+        $r3 = new java.lang.StringIndexOutOfBoundsException;
+        $i3 = i1 - i0;
+        specialinvoke $r3.<java.lang.StringIndexOutOfBoundsException: void <init>(int)>($i3);
+        throw $r3;
+
+     label2:
+        if i0 != 0 goto label3;
+
+        $i4 = r0.<java.lang.String: int count>;
+        if i1 != $i4 goto label3;
+
+        $r4 = r0;
+        goto label4;
+
+     label3:
+        $r4 = new java.lang.String;
+        $i5 = r0.<java.lang.String: int offset>;
+        $i6 = $i5 + i0;
+        $i7 = i1 - i0;
+        $r5 = r0.<java.lang.String: char[] value>;
+        specialinvoke $r4.<java.lang.String: void <init>(int,int,char[])>($i6, $i7, $r5);
+
+     label4:
+        return $r4;
+    }
+
+    public java.lang.CharSequence subSequence(int, int)
+    {
+        java.lang.String r0, $r1;
+        int i0, i1;
+
+        r0 := @this: java.lang.String;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(i0, i1);
+        return $r1;
+    }
+
+    public java.lang.String concat(java.lang.String)
+    {
+        java.lang.String r0, r1, $r3;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6;
+        char[] r2;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 = virtualinvoke r1.<java.lang.String: int length()>();
+        if i0 != 0 goto label0;
+
+        return r0;
+
+     label0:
+        $i1 = r0.<java.lang.String: int count>;
+        $i2 = $i1 + i0;
+        r2 = newarray (char)[$i2];
+        $i3 = r0.<java.lang.String: int count>;
+        virtualinvoke r0.<java.lang.String: void getChars(int,int,char[],int)>(0, $i3, r2, 0);
+        $i4 = r0.<java.lang.String: int count>;
+        virtualinvoke r1.<java.lang.String: void getChars(int,int,char[],int)>(0, i0, r2, $i4);
+        $r3 = new java.lang.String;
+        $i5 = r0.<java.lang.String: int count>;
+        $i6 = $i5 + i0;
+        specialinvoke $r3.<java.lang.String: void <init>(int,int,char[])>(0, $i6, r2);
+        return $r3;
+    }
+
+    public java.lang.String replace(char, char)
+    {
+        java.lang.String r0, $r4;
+        char c0, c1, $c7, $c9, c11, $c13;
+        int i2, i3, i4, i5, $i6, $i8, $i10, $i12;
+        char[] r1, r2;
+
+        r0 := @this: java.lang.String;
+        c0 := @parameter0: char;
+        c1 := @parameter1: char;
+        if c0 == c1 goto label7;
+
+        i2 = r0.<java.lang.String: int count>;
+        i3 = -1;
+        r1 = r0.<java.lang.String: char[] value>;
+        i4 = r0.<java.lang.String: int offset>;
+
+     label0:
+        i3 = i3 + 1;
+        if i3 >= i2 goto label1;
+
+        $i6 = i4 + i3;
+        $c7 = r1[$i6];
+        if $c7 != c0 goto label0;
+
+        goto label1;
+
+     label1:
+        if i3 >= i2 goto label7;
+
+        r2 = newarray (char)[i2];
+        i5 = 0;
+
+     label2:
+        if i5 >= i3 goto label3;
+
+        $i8 = i4 + i5;
+        $c9 = r1[$i8];
+        r2[i5] = $c9;
+        i5 = i5 + 1;
+        goto label2;
+
+     label3:
+        if i3 >= i2 goto label6;
+
+        $i10 = i4 + i3;
+        c11 = r1[$i10];
+        $i12 = i3;
+        if c11 != c0 goto label4;
+
+        $c13 = c1;
+        goto label5;
+
+     label4:
+        $c13 = c11;
+
+     label5:
+        r2[$i12] = $c13;
+        i3 = i3 + 1;
+        goto label3;
+
+     label6:
+        $r4 = new java.lang.String;
+        specialinvoke $r4.<java.lang.String: void <init>(int,int,char[])>(0, i2, r2);
+        return $r4;
+
+     label7:
+        return r0;
+    }
+
+    public boolean matches(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $z0 = staticinvoke <java.util.regex.Pattern: boolean matches(java.lang.String,java.lang.CharSequence)>(r1, r0);
+        return $z0;
+    }
+
+    public boolean contains(java.lang.CharSequence)
+    {
+        java.lang.String r0, $r2;
+        java.lang.CharSequence r1;
+        int $i0;
+        boolean $z0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.CharSequence;
+        $r2 = virtualinvoke r1.<java.lang.Object: java.lang.String toString()>();
+        $i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>($r2);
+        if $i0 <= -1 goto label0;
+
+        $z0 = 1;
+        goto label1;
+
+     label0:
+        $z0 = 0;
+
+     label1:
+        return $z0;
+    }
+
+    public java.lang.String replaceFirst(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1, r2, $r5;
+        java.util.regex.Pattern $r3;
+        java.util.regex.Matcher $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(r1);
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r0);
+        $r5 = virtualinvoke $r4.<java.util.regex.Matcher: java.lang.String replaceFirst(java.lang.String)>(r2);
+        return $r5;
+    }
+
+    public java.lang.String replaceAll(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1, r2, $r5;
+        java.util.regex.Pattern $r3;
+        java.util.regex.Matcher $r4;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        $r3 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(r1);
+        $r4 = virtualinvoke $r3.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r0);
+        $r5 = virtualinvoke $r4.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>(r2);
+        return $r5;
+    }
+
+    public java.lang.String replace(java.lang.CharSequence, java.lang.CharSequence)
+    {
+        java.lang.String r0, $r3, $r6, $r7, $r8;
+        java.lang.CharSequence r1, r2;
+        java.util.regex.Pattern $r4;
+        java.util.regex.Matcher $r5;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.CharSequence;
+        r2 := @parameter1: java.lang.CharSequence;
+        $r3 = virtualinvoke r1.<java.lang.Object: java.lang.String toString()>();
+        $r4 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String,int)>($r3, 16);
+        $r5 = virtualinvoke $r4.<java.util.regex.Pattern: java.util.regex.Matcher matcher(java.lang.CharSequence)>(r0);
+        $r6 = virtualinvoke r2.<java.lang.Object: java.lang.String toString()>();
+        $r7 = staticinvoke <java.util.regex.Matcher: java.lang.String quoteReplacement(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r5.<java.util.regex.Matcher: java.lang.String replaceAll(java.lang.String)>($r7);
+        return $r8;
+    }
+
+    public java.lang.String[] split(java.lang.String, int)
+    {
+        java.lang.String r0, r1;
+        int i0;
+        java.util.regex.Pattern $r2;
+        java.lang.String[] $r3;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        $r2 = staticinvoke <java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String)>(r1);
+        $r3 = virtualinvoke $r2.<java.util.regex.Pattern: java.lang.String[] split(java.lang.CharSequence,int)>(r0, i0);
+        return $r3;
+    }
+
+    public java.lang.String[] split(java.lang.String)
+    {
+        java.lang.String r0, r1;
+        java.lang.String[] $r2;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.String;
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String[] split(java.lang.String,int)>(r1, 0);
+        return $r2;
+    }
+
+    public java.lang.String toLowerCase(java.util.Locale)
+    {
+        java.lang.String r0, r2, $r10;
+        java.util.Locale r1;
+        int i0, i2, i3, i4, i5, i6, i7, $i8, $i9, $i10, $i11, $i12, $i14, i15, $i16, $i17, $i18, $i19, $i22, $i23, $i24, $i25, $i26, $i27, $i28, i29, $i30, $i31, $i33, $i34, $i36, $i37;
+        char c1, $c13, $c20, $c21, $c32, $c35;
+        boolean z0, $z1;
+        char[] r3, r4, $r6, r7, $r8, $r9;
+        java.lang.NullPointerException $r5;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.util.Locale;
+        if r1 != null goto label0;
+
+        $r5 = new java.lang.NullPointerException;
+        specialinvoke $r5.<java.lang.NullPointerException: void <init>()>();
+        throw $r5;
+
+     label0:
+        i0 = 0;
+
+     label1:
+        $i8 = r0.<java.lang.String: int count>;
+        if i0 >= $i8 goto label6;
+
+        $r6 = r0.<java.lang.String: char[] value>;
+        $i9 = r0.<java.lang.String: int offset>;
+        $i10 = $i9 + i0;
+        c1 = $r6[$i10];
+        if c1 < 55296 goto label3;
+
+        if c1 > 56319 goto label3;
+
+        i2 = virtualinvoke r0.<java.lang.String: int codePointAt(int)>(i0);
+        $i11 = staticinvoke <java.lang.Character: int toLowerCase(int)>(i2);
+        if i2 == $i11 goto label2;
+
+        goto label7;
+
+     label2:
+        $i12 = staticinvoke <java.lang.Character: int charCount(int)>(i2);
+        i0 = i0 + $i12;
+        goto label5;
+
+     label3:
+        $c13 = staticinvoke <java.lang.Character: char toLowerCase(char)>(c1);
+        if c1 == $c13 goto label4;
+
+        goto label7;
+
+     label4:
+        i0 = i0 + 1;
+
+     label5:
+        goto label1;
+
+     label6:
+        return r0;
+
+     label7:
+        $i14 = r0.<java.lang.String: int count>;
+        r7 = newarray (char)[$i14];
+        i15 = 0;
+        $r8 = r0.<java.lang.String: char[] value>;
+        $i16 = r0.<java.lang.String: int offset>;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r8, $i16, r7, 0, i0);
+        r2 = virtualinvoke r1.<java.util.Locale: java.lang.String getLanguage()>();
+        if r2 == "tr" goto label8;
+
+        if r2 == "az" goto label8;
+
+        if r2 != "lt" goto label9;
+
+     label8:
+        $z1 = 1;
+        goto label10;
+
+     label9:
+        $z1 = 0;
+
+     label10:
+        z0 = $z1;
+        i3 = i0;
+
+     label11:
+        $i17 = r0.<java.lang.String: int count>;
+        if i3 >= $i17 goto label26;
+
+        $r9 = r0.<java.lang.String: char[] value>;
+        $i18 = r0.<java.lang.String: int offset>;
+        $i19 = $i18 + i3;
+        i4 = $r9[$i19];
+        $c20 = (char) i4;
+        if $c20 < 55296 goto label12;
+
+        $c21 = (char) i4;
+        if $c21 > 56319 goto label12;
+
+        i4 = virtualinvoke r0.<java.lang.String: int codePointAt(int)>(i3);
+        i5 = staticinvoke <java.lang.Character: int charCount(int)>(i4);
+        goto label13;
+
+     label12:
+        i5 = 1;
+
+     label13:
+        if z0 != 0 goto label14;
+
+        if i4 != 931 goto label15;
+
+     label14:
+        i6 = staticinvoke <java.lang.ConditionalSpecialCasing: int toLowerCaseEx(java.lang.String,int,java.util.Locale)>(r0, i3, r1);
+        goto label16;
+
+     label15:
+        i6 = staticinvoke <java.lang.Character: int toLowerCase(int)>(i4);
+
+     label16:
+        if i6 == -1 goto label17;
+
+        if i6 < 65536 goto label24;
+
+     label17:
+        if i6 != -1 goto label18;
+
+        r3 = staticinvoke <java.lang.ConditionalSpecialCasing: char[] toLowerCaseCharArray(java.lang.String,int,java.util.Locale)>(r0, i3, r1);
+        goto label20;
+
+     label18:
+        if i5 != 2 goto label19;
+
+        $i22 = i3 + i15;
+        $i23 = staticinvoke <java.lang.Character: int toChars(int,char[],int)>(i6, r7, $i22);
+        $i24 = $i23 - i5;
+        i15 = i15 + $i24;
+        goto label25;
+
+     label19:
+        r3 = staticinvoke <java.lang.Character: char[] toChars(int)>(i6);
+
+     label20:
+        i7 = lengthof r3;
+        if i7 <= i5 goto label21;
+
+        $i25 = lengthof r7;
+        $i26 = $i25 + i7;
+        $i27 = $i26 - i5;
+        r4 = newarray (char)[$i27];
+        $i28 = i3 + i15;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r7, 0, r4, 0, $i28);
+        r7 = r4;
+
+     label21:
+        i29 = 0;
+
+     label22:
+        if i29 >= i7 goto label23;
+
+        $i30 = i3 + i15;
+        $i31 = $i30 + i29;
+        $c32 = r3[i29];
+        r7[$i31] = $c32;
+        i29 = i29 + 1;
+        goto label22;
+
+     label23:
+        $i33 = i7 - i5;
+        i15 = i15 + $i33;
+        goto label25;
+
+     label24:
+        $i34 = i3 + i15;
+        $c35 = (char) i6;
+        r7[$i34] = $c35;
+
+     label25:
+        i3 = i3 + i5;
+        goto label11;
+
+     label26:
+        $r10 = new java.lang.String;
+        $i36 = r0.<java.lang.String: int count>;
+        $i37 = $i36 + i15;
+        specialinvoke $r10.<java.lang.String: void <init>(int,int,char[])>(0, $i37, r7);
+        return $r10;
+    }
+
+    public java.lang.String toLowerCase()
+    {
+        java.lang.String r0, $r2;
+        java.util.Locale $r1;
+
+        r0 := @this: java.lang.String;
+        $r1 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($r1);
+        return $r2;
+    }
+
+    public java.lang.String toUpperCase(java.util.Locale)
+    {
+        java.lang.String r0, r8, $r10;
+        java.util.Locale r1;
+        int i0, i1, i2, i3, i4, i5, i6, i7, i8, $i9, $i10, $i11, $i12, i13, $i14, $i15, $i16, $i17, $i20, $i21, $i22, $i23, $i24, $i25, $i26, i27, $i28, $i29, $i31, $i32, $i34, $i35;
+        boolean z0, $z1;
+        char[] r2, r3, $r5, r6, $r7, $r9;
+        java.lang.NullPointerException $r4;
+        char $c18, $c19, $c30, $c33;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.util.Locale;
+        if r1 != null goto label0;
+
+        $r4 = new java.lang.NullPointerException;
+        specialinvoke $r4.<java.lang.NullPointerException: void <init>()>();
+        throw $r4;
+
+     label0:
+        i0 = 0;
+
+     label1:
+        $i9 = r0.<java.lang.String: int count>;
+        if i0 >= $i9 goto label5;
+
+        $r5 = r0.<java.lang.String: char[] value>;
+        $i10 = r0.<java.lang.String: int offset>;
+        $i11 = $i10 + i0;
+        i1 = $r5[$i11];
+        if i1 < 55296 goto label2;
+
+        if i1 > 56319 goto label2;
+
+        i1 = virtualinvoke r0.<java.lang.String: int codePointAt(int)>(i0);
+        i2 = staticinvoke <java.lang.Character: int charCount(int)>(i1);
+        goto label3;
+
+     label2:
+        i2 = 1;
+
+     label3:
+        i3 = staticinvoke <java.lang.Character: int toUpperCaseEx(int)>(i1);
+        if i3 == -1 goto label6;
+
+        if i1 == i3 goto label4;
+
+        goto label6;
+
+     label4:
+        i0 = i0 + i2;
+        goto label1;
+
+     label5:
+        return r0;
+
+     label6:
+        $i12 = r0.<java.lang.String: int count>;
+        r6 = newarray (char)[$i12];
+        i13 = 0;
+        $r7 = r0.<java.lang.String: char[] value>;
+        $i14 = r0.<java.lang.String: int offset>;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r7, $i14, r6, 0, i0);
+        r8 = virtualinvoke r1.<java.util.Locale: java.lang.String getLanguage()>();
+        if r8 == "tr" goto label7;
+
+        if r8 == "az" goto label7;
+
+        if r8 != "lt" goto label8;
+
+     label7:
+        $z1 = 1;
+        goto label9;
+
+     label8:
+        $z1 = 0;
+
+     label9:
+        z0 = $z1;
+        i4 = i0;
+
+     label10:
+        $i15 = r0.<java.lang.String: int count>;
+        if i4 >= $i15 goto label25;
+
+        $r9 = r0.<java.lang.String: char[] value>;
+        $i16 = r0.<java.lang.String: int offset>;
+        $i17 = $i16 + i4;
+        i5 = $r9[$i17];
+        $c18 = (char) i5;
+        if $c18 < 55296 goto label11;
+
+        $c19 = (char) i5;
+        if $c19 > 56319 goto label11;
+
+        i5 = virtualinvoke r0.<java.lang.String: int codePointAt(int)>(i4);
+        i6 = staticinvoke <java.lang.Character: int charCount(int)>(i5);
+        goto label12;
+
+     label11:
+        i6 = 1;
+
+     label12:
+        if z0 == 0 goto label13;
+
+        i7 = staticinvoke <java.lang.ConditionalSpecialCasing: int toUpperCaseEx(java.lang.String,int,java.util.Locale)>(r0, i4, r1);
+        goto label14;
+
+     label13:
+        i7 = staticinvoke <java.lang.Character: int toUpperCaseEx(int)>(i5);
+
+     label14:
+        if i7 == -1 goto label15;
+
+        if i7 < 65536 goto label23;
+
+     label15:
+        if i7 != -1 goto label17;
+
+        if z0 == 0 goto label16;
+
+        r2 = staticinvoke <java.lang.ConditionalSpecialCasing: char[] toUpperCaseCharArray(java.lang.String,int,java.util.Locale)>(r0, i4, r1);
+        goto label19;
+
+     label16:
+        r2 = staticinvoke <java.lang.Character: char[] toUpperCaseCharArray(int)>(i5);
+        goto label19;
+
+     label17:
+        if i6 != 2 goto label18;
+
+        $i20 = i4 + i13;
+        $i21 = staticinvoke <java.lang.Character: int toChars(int,char[],int)>(i7, r6, $i20);
+        $i22 = $i21 - i6;
+        i13 = i13 + $i22;
+        goto label24;
+
+     label18:
+        r2 = staticinvoke <java.lang.Character: char[] toChars(int)>(i7);
+
+     label19:
+        i8 = lengthof r2;
+        if i8 <= i6 goto label20;
+
+        $i23 = lengthof r6;
+        $i24 = $i23 + i8;
+        $i25 = $i24 - i6;
+        r3 = newarray (char)[$i25];
+        $i26 = i4 + i13;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r6, 0, r3, 0, $i26);
+        r6 = r3;
+
+     label20:
+        i27 = 0;
+
+     label21:
+        if i27 >= i8 goto label22;
+
+        $i28 = i4 + i13;
+        $i29 = $i28 + i27;
+        $c30 = r2[i27];
+        r6[$i29] = $c30;
+        i27 = i27 + 1;
+        goto label21;
+
+     label22:
+        $i31 = i8 - i6;
+        i13 = i13 + $i31;
+        goto label24;
+
+     label23:
+        $i32 = i4 + i13;
+        $c33 = (char) i7;
+        r6[$i32] = $c33;
+
+     label24:
+        i4 = i4 + i6;
+        goto label10;
+
+     label25:
+        $r10 = new java.lang.String;
+        $i34 = r0.<java.lang.String: int count>;
+        $i35 = $i34 + i13;
+        specialinvoke $r10.<java.lang.String: void <init>(int,int,char[])>(0, $i35, r6);
+        return $r10;
+    }
+
+    public java.lang.String toUpperCase()
+    {
+        java.lang.String r0, $r2;
+        java.util.Locale $r1;
+
+        r0 := @this: java.lang.String;
+        $r1 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>();
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String toUpperCase(java.util.Locale)>($r1);
+        return $r2;
+    }
+
+    public java.lang.String trim()
+    {
+        java.lang.String r0, $r2;
+        int i0, i1, i2, $i3, $i5, $i6, $i8;
+        char[] r1;
+        char $c4, $c7;
+
+        r0 := @this: java.lang.String;
+        i0 = r0.<java.lang.String: int count>;
+        i1 = 0;
+        i2 = r0.<java.lang.String: int offset>;
+        r1 = r0.<java.lang.String: char[] value>;
+
+     label0:
+        if i1 >= i0 goto label1;
+
+        $i3 = i2 + i1;
+        $c4 = r1[$i3];
+        if $c4 > 32 goto label1;
+
+        i1 = i1 + 1;
+        goto label0;
+
+     label1:
+        if i1 >= i0 goto label2;
+
+        $i5 = i2 + i0;
+        $i6 = $i5 - 1;
+        $c7 = r1[$i6];
+        if $c7 > 32 goto label2;
+
+        i0 = i0 + -1;
+        goto label1;
+
+     label2:
+        if i1 > 0 goto label3;
+
+        $i8 = r0.<java.lang.String: int count>;
+        if i0 >= $i8 goto label4;
+
+     label3:
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(i1, i0);
+        goto label5;
+
+     label4:
+        $r2 = r0;
+
+     label5:
+        return $r2;
+    }
+
+    public java.lang.String toString()
+    {
+        java.lang.String r0;
+
+        r0 := @this: java.lang.String;
+        return r0;
+    }
+
+    public char[] toCharArray()
+    {
+        java.lang.String r0;
+        char[] r1;
+        int $i0, $i1;
+
+        r0 := @this: java.lang.String;
+        $i0 = r0.<java.lang.String: int count>;
+        r1 = newarray (char)[$i0];
+        $i1 = r0.<java.lang.String: int count>;
+        virtualinvoke r0.<java.lang.String: void getChars(int,int,char[],int)>(0, $i1, r1, 0);
+        return r1;
+    }
+
+    public static transient java.lang.String format(java.lang.String, java.lang.Object[])
+    {
+        java.lang.String r0, $r4;
+        java.lang.Object[] r1;
+        java.util.Formatter $r2, $r3;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.Object[];
+        $r2 = new java.util.Formatter;
+        specialinvoke $r2.<java.util.Formatter: void <init>()>();
+        $r3 = virtualinvoke $r2.<java.util.Formatter: java.util.Formatter format(java.lang.String,java.lang.Object[])>(r0, r1);
+        $r4 = virtualinvoke $r3.<java.util.Formatter: java.lang.String toString()>();
+        return $r4;
+    }
+
+    public static transient java.lang.String format(java.util.Locale, java.lang.String, java.lang.Object[])
+    {
+        java.util.Locale r0;
+        java.lang.String r1, $r5;
+        java.lang.Object[] r2;
+        java.util.Formatter $r3, $r4;
+
+        r0 := @parameter0: java.util.Locale;
+        r1 := @parameter1: java.lang.String;
+        r2 := @parameter2: java.lang.Object[];
+        $r3 = new java.util.Formatter;
+        specialinvoke $r3.<java.util.Formatter: void <init>(java.util.Locale)>(r0);
+        $r4 = virtualinvoke $r3.<java.util.Formatter: java.util.Formatter format(java.lang.String,java.lang.Object[])>(r1, r2);
+        $r5 = virtualinvoke $r4.<java.util.Formatter: java.lang.String toString()>();
+        return $r5;
+    }
+
+    public static java.lang.String valueOf(java.lang.Object)
+    {
+        java.lang.Object r0;
+        java.lang.String $r1;
+
+        r0 := @parameter0: java.lang.Object;
+        if r0 != null goto label0;
+
+        $r1 = "null";
+        goto label1;
+
+     label0:
+        $r1 = virtualinvoke r0.<java.lang.Object: java.lang.String toString()>();
+
+     label1:
+        return $r1;
+    }
+
+    public static java.lang.String valueOf(char[])
+    {
+        char[] r0;
+        java.lang.String $r1;
+
+        r0 := @parameter0: char[];
+        $r1 = new java.lang.String;
+        specialinvoke $r1.<java.lang.String: void <init>(char[])>(r0);
+        return $r1;
+    }
+
+    public static java.lang.String valueOf(char[], int, int)
+    {
+        char[] r0;
+        int i0, i1;
+        java.lang.String $r1;
+
+        r0 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        $r1 = new java.lang.String;
+        specialinvoke $r1.<java.lang.String: void <init>(char[],int,int)>(r0, i0, i1);
+        return $r1;
+    }
+
+    public static java.lang.String copyValueOf(char[], int, int)
+    {
+        char[] r0;
+        int i0, i1;
+        java.lang.String $r1;
+
+        r0 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        $r1 = new java.lang.String;
+        specialinvoke $r1.<java.lang.String: void <init>(char[],int,int)>(r0, i0, i1);
+        return $r1;
+    }
+
+    public static java.lang.String copyValueOf(char[])
+    {
+        char[] r0;
+        int $i0;
+        java.lang.String $r1;
+
+        r0 := @parameter0: char[];
+        $i0 = lengthof r0;
+        $r1 = staticinvoke <java.lang.String: java.lang.String copyValueOf(char[],int,int)>(r0, 0, $i0);
+        return $r1;
+    }
+
+    public static java.lang.String valueOf(boolean)
+    {
+        boolean z0;
+        java.lang.String $r0;
+
+        z0 := @parameter0: boolean;
+        if z0 == 0 goto label0;
+
+        $r0 = "true";
+        goto label1;
+
+     label0:
+        $r0 = "false";
+
+     label1:
+        return $r0;
+    }
+
+    public static java.lang.String valueOf(char)
+    {
+        char c0;
+        char[] r0, $r1;
+        java.lang.String $r2;
+
+        c0 := @parameter0: char;
+        $r1 = newarray (char)[1];
+        $r1[0] = c0;
+        r0 = $r1;
+        $r2 = new java.lang.String;
+        specialinvoke $r2.<java.lang.String: void <init>(int,int,char[])>(0, 1, r0);
+        return $r2;
+    }
+
+    public static java.lang.String valueOf(int)
+    {
+        int i0;
+        java.lang.String $r0;
+
+        i0 := @parameter0: int;
+        $r0 = staticinvoke <java.lang.Integer: java.lang.String toString(int,int)>(i0, 10);
+        return $r0;
+    }
+
+    public static java.lang.String valueOf(long)
+    {
+        long l0;
+        java.lang.String $r0;
+
+        l0 := @parameter0: long;
+        $r0 = staticinvoke <java.lang.Long: java.lang.String toString(long,int)>(l0, 10);
+        return $r0;
+    }
+
+    public static java.lang.String valueOf(float)
+    {
+        float f0;
+        java.lang.String $r0;
+
+        f0 := @parameter0: float;
+        $r0 = staticinvoke <java.lang.Float: java.lang.String toString(float)>(f0);
+        return $r0;
+    }
+
+    public static java.lang.String valueOf(double)
+    {
+        double d0;
+        java.lang.String $r0;
+
+        d0 := @parameter0: double;
+        $r0 = staticinvoke <java.lang.Double: java.lang.String toString(double)>(d0);
+        return $r0;
+    }
+
+    public native java.lang.String intern();
+
+    public volatile int compareTo(java.lang.Object)
+    {
+        java.lang.String r0, $r2;
+        java.lang.Object r1;
+        int $i0;
+
+        r0 := @this: java.lang.String;
+        r1 := @parameter0: java.lang.Object;
+        $r2 = (java.lang.String) r1;
+        $i0 = virtualinvoke r0.<java.lang.String: int compareTo(java.lang.String)>($r2);
+        return $i0;
+    }
+
+    static void <clinit>()
+    {
+        java.io.ObjectStreamField[] $r0;
+        java.lang.String$CaseInsensitiveComparator $r1;
+
+        $r0 = newarray (java.io.ObjectStreamField)[0];
+        <java.lang.String: java.io.ObjectStreamField[] serialPersistentFields> = $r0;
+        $r1 = new java.lang.String$CaseInsensitiveComparator;
+        specialinvoke $r1.<java.lang.String$CaseInsensitiveComparator: void <init>(java.lang.String$1)>(null);
+        <java.lang.String: java.util.Comparator CASE_INSENSITIVE_ORDER> = $r1;
+        return;
+    }
+}

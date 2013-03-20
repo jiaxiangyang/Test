@@ -1,0 +1,19 @@
+
+<method  id="f1" class="" method="">
+	<node id="1" linenumber="12" type="method" scope="try">
+		<method class="" method=""/>
+		<resouce id="" event="open"/>
+		<throw exception=""/>
+	</node>
+	<node id="1" linenumber="12" type="method" scope="catch">
+		<method class="" method=""/>
+		<resouce id="" event="open"/>
+	</node>
+	<arc exception="E" source="" target=""/>
+	
+	
+
+</method>
+
+
+	

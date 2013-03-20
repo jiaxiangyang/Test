@@ -1,0 +1,5 @@
+interface  org.sklse.UI extends java.lang.Object
+{
+
+    public abstract void display(java.lang.String);
+}

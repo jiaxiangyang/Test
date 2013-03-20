@@ -1,0 +1,148 @@
+public class org.sklse.HelloWorld extends java.lang.Object
+{
+    public java.lang.String ss;
+    public static java.lang.String v;
+    public static java.util.ArrayList a;
+
+    static void <clinit>()
+    {
+        java.util.ArrayList $r0;
+
+        <org.sklse.HelloWorld: java.lang.String v> = "33";
+        $r0 = new java.util.ArrayList;
+        specialinvoke $r0.<java.util.ArrayList: void <init>()>();
+        <org.sklse.HelloWorld: java.util.ArrayList a> = $r0;
+        return;
+    }
+
+    public void <init>()
+    {
+        org.sklse.HelloWorld this;
+
+        this := @this: org.sklse.HelloWorld;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        this.<org.sklse.HelloWorld: java.lang.String ss> = "dd";
+        return;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] arg;
+        org.sklse.TextUI $r0, ui, b, c;
+        byte m;
+        java.lang.String $r1, $r3;
+        java.lang.StringBuilder $r2, $r4;
+        java.util.ArrayList $r5;
+
+        arg := @parameter0: java.lang.String[];
+        $r0 = new org.sklse.TextUI;
+        specialinvoke $r0.<org.sklse.TextUI: void <init>()>();
+        ui = $r0;
+        $r0 = new org.sklse.TextUI;
+        specialinvoke $r0.<org.sklse.TextUI: void <init>()>();
+        b = $r0;
+        $r0 = new org.sklse.TextUI;
+        specialinvoke $r0.<org.sklse.TextUI: void <init>(org.sklse.TextUI)>(b);
+        c = $r0;
+        ui.<org.sklse.TextUI: org.sklse.TextUI next> = b;
+        $r1 = <org.sklse.HelloWorld: java.lang.String v>;
+        if $r1 == null goto label0;
+
+        $r2 = new java.lang.StringBuilder;
+        $r3 = <org.sklse.HelloWorld: java.lang.String v>;
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r3);
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("ss");
+        $r1 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+        <org.sklse.HelloWorld: java.lang.String v> = $r1;
+        b = ui;
+        goto label1;
+
+     label0:
+        m = 0;
+        $r2 = new java.lang.StringBuilder;
+        $r3 = <org.sklse.HelloWorld: java.lang.String v>;
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r3);
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>($r3);
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(m);
+        $r1 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+        <org.sklse.HelloWorld: java.lang.String v> = $r1;
+        ui.<org.sklse.TextUI: org.sklse.TextUI next> = c;
+
+     label1:
+        $r5 = <org.sklse.HelloWorld: java.util.ArrayList a>;
+        virtualinvoke $r5.<java.util.ArrayList: boolean add(java.lang.Object)>(b);
+        virtualinvoke ui.<org.sklse.TextUI: void display(java.lang.String)>("Hello World");
+        return;
+    }
+
+    public void close(java.sql.Connection)
+    {
+        org.sklse.HelloWorld this;
+        java.sql.Connection cn;
+        byte b, p, l5;
+        java.sql.SQLException e, $r0, $r3;
+        java.lang.Throwable l4, $r5;
+        java.util.ArrayList $r1;
+        java.lang.Integer $r2;
+        java.lang.Exception $r4, e;
+
+        this := @this: org.sklse.HelloWorld;
+        cn := @parameter0: java.sql.Connection;
+
+     label0:
+        b = 1;
+        if b <= 0 goto label1;
+
+        $r0 = new java.sql.SQLException;
+        specialinvoke $r0.<java.sql.SQLException: void <init>()>();
+        throw $r0;
+
+     label1:
+        $r1 = <org.sklse.HelloWorld: java.util.ArrayList a>;
+        $r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(b);
+        virtualinvoke $r1.<java.util.ArrayList: boolean add(java.lang.Object)>($r2);
+        interfaceinvoke cn.<java.sql.Connection: void close()>();
+
+     label2:
+        goto label9;
+
+     label3:
+        $r3 := @caughtexception;
+        e = $r3;
+        p = 2;
+        virtualinvoke e.<java.sql.SQLException: void printStackTrace()>();
+
+     label4:
+        l5 = 3;
+        goto label10;
+
+     label5:
+        $r4 := @caughtexception;
+
+     label6:
+        e = $r4;
+        virtualinvoke e.<java.lang.Exception: void printStackTrace()>();
+
+     label7:
+        l5 = 3;
+        goto label10;
+
+     label8:
+        $r5 := @caughtexception;
+        l4 = $r5;
+        l5 = 3;
+        throw l4;
+
+     label9:
+        l5 = 3;
+
+     label10:
+        return;
+
+        catch java.sql.SQLException from label0 to label2 with label3;
+        catch java.lang.Exception from label0 to label2 with label5;
+        catch java.lang.Throwable from label0 to label4 with label8;
+        catch java.lang.Throwable from label6 to label7 with label8;
+    }
+}

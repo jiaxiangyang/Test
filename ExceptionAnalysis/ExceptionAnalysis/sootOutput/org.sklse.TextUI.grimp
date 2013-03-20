@@ -1,0 +1,25 @@
+class org.sklse.TextUI extends java.lang.Object implements org.sklse.UI
+{
+
+    public void display(java.lang.String)
+    {
+        org.sklse.TextUI this;
+        java.lang.String msg;
+        java.io.PrintStream temp$0;
+
+        this := @this;
+        msg := @parameter0;
+        temp$0 = java.lang.System.out;
+        temp$0.println(msg);
+        return;
+    }
+
+    void <init>()
+    {
+        org.sklse.TextUI this;
+
+        this := @this;
+        this.<init>();
+        return;
+    }
+}

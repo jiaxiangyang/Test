@@ -1,0 +1,74 @@
+public class org.sklse.MyTest extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.lang.String a, b;
+        int temp$0;
+        java.io.PrintStream temp$1, temp$2, temp$3, temp$4, temp$6;
+        java.lang.RuntimeException e;
+        java.lang.Throwable temp$5;
+
+        args := @parameter0;
+        a = "ss";
+        b = "cc";
+
+     label0:
+        nop;
+        temp$0 = a.compareTo(b);
+        if temp$0 > 0 goto label1;
+
+        goto label2;
+
+     label1:
+        nop;
+        temp$1 = java.lang.System.out;
+        temp$1.println(a);
+
+     label2:
+        nop;
+
+     label3:
+        nop;
+        temp$2 = java.lang.System.out;
+        temp$2.println(b);
+        goto label7;
+
+     label4:
+        nop;
+        e := @caughtexception;
+        temp$3 = java.lang.System.out;
+        temp$3.println(e);
+
+     label5:
+        nop;
+        temp$4 = java.lang.System.out;
+        temp$4.println(b);
+        goto label7;
+
+     label6:
+        nop;
+        temp$5 := @caughtexception;
+        temp$6 = java.lang.System.out;
+        temp$6.println(b);
+        throw temp$5;
+
+     label7:
+        nop;
+        return;
+
+        catch java.lang.RuntimeException from label0 to label3 with label4;
+        catch java.lang.Throwable from label0 to label3 with label6;
+        catch java.lang.Throwable from label3 to label5 with label6;
+    }
+
+    public void <init>()
+    {
+        org.sklse.MyTest this;
+
+        this := @this;
+        this.<init>();
+        return;
+    }
+}

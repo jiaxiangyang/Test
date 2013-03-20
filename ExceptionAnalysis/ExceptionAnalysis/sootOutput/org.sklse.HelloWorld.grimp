@@ -1,0 +1,27 @@
+public class org.sklse.HelloWorld extends java.lang.Object
+{
+
+    public static void main2(java.lang.String[])
+    {
+        java.lang.String[] arg;
+        org.sklse.UI ui, a, b;
+        org.sklse.TextUI temp$0;
+
+        arg := @parameter0;
+        temp$0 = new org.sklse.TextUI();
+        ui = temp$0;
+        b = ui;
+        a = b;
+        ui.display("Hello World");
+        return;
+    }
+
+    public void <init>()
+    {
+        org.sklse.HelloWorld this;
+
+        this := @this;
+        this.<init>();
+        return;
+    }
+}
